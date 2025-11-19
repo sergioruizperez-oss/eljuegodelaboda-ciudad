@@ -1,30 +1,30 @@
 import { useEffect, useMemo, useState } from 'react';
 
 const RAW_CITIES = [
-  ['Ámsterdam','Países Bajos','recorrer los canales en barco, visitar museos y cafés junto al agua'],
-  ['Atenas','Grecia','ver la Acrópolis, pasear por Plaka y comer delicias griegas al sol'],
-  ['Barcelona','España','disfrutar de las playas, la Sagrada Familia y tapas hasta caer de espaldas'],
-  ['Basilea / Mulhouse / Freiburg','Suiza / Francia / Alemania','saltar de un país a otro casi sin darse cuenta'],
-  ['Bilbao','España','ver el Guggenheim, tapear de pintxos y hacer alguna excursión cerca'],
-  ['Bordeaux','Francia','probar vinos, pasear junto al Garona y admirar el centro histórico'],
+  ['Ámsterdam','Países Bajos','recorrer los canales en barco, fumaros unos canutos, visitar museos y helaros junto a los canales'],
+  ['Atenas','Grecia','ver la Acrópolis, pasear por Plaka y comer delicias griegas como si no hubiera un mañana'],
+  ['Barcelona','España','disfrutar de las playas, la Sagrada Familia y comer tapas hasta caer de espaldas'],
+  ['Basilea','Suiza','saltar de un país a otro casi sin darse cuenta'],
+  ['Bilbao','España','ver OTRA VEZ el Guggenheim, tapear de pintxos UNA VEZ MÁS y volver corriendo cuesta arriba para recuperar el bolso perdido'],
+  ['Burdeos','Francia','beber vino como si estuvierais en Juego de Tronos, pasear junto al Garona (río desconocido donde los haya) y admirar el centro histórico'],
   ['Bruselas','Bélgica','comer gofres, chocolate y perderse por la Grand Place'],
   ['Copenhague','Dinamarca','pasear por Nyhavn, montarse en Tivoli y presumir de diseño nórdico'],
   ['Cracovia','Polonia','recorrer el casco antiguo medieval y subir al castillo de Wawel'],
   ['Gdansk','Polonia','ver el puerto histórico, la arquitectura báltica y pasear junto al mar'],
   ['Ginebra','Suiza','ver el lago Lemán, probar chocolate y disfrutar de las vistas alpinas'],
-  ['Helsinki','Finlandia','alternar entre saunas, arquitectura y naturaleza del archipiélago'],
-  ['Lisboa','Portugal','subir en tranvía, ver miradores y comer pastéis de nata'],
-  ['Londres','Reino Unido','visitar museos gratuitos, parques enormes y mercados míticos'],
-  ['Málaga','España','ir a la playa, ver a Picasso y zamparse un buen pescaíto frito'],
+  ['Helsinki','Finlandia','pasar más frío que robando nieve'],
+  ['Lisboa','Portugal','pasar momentos inolvidables con Carla, Sergio y la familia'],
+  ['Londres','Reino Unido','¿qué? ¿para quéeeeeee?'],
+  ['Málaga','España','ir a la playa (por los cojones), ver el museo Picasso y comer pescaíto frito con vuestros queridísimos amigos Carla y Sergio (una pena que no haya cuadrado, era una opción sólida)'],
   ['Marsella','Francia','recorrer el puerto viejo, ver arte callejero y probar bouillabaisse'],
   ['Nantes','Francia','pasear junto al Loira y probar buen marisco'],
-  ['Niza / Côte d’Azur','Francia','mezclar playas, glamour y pueblecitos preciosos alrededor'],
+  ['Côte d’Azur','Francia','ver la playa de lejos, glamour (prepara la de Ubrique) y ver pueblecitos preciosos alrededor'],
   ['Oslo','Noruega','acercarse a los fiordos, ver arquitectura nórdica y museos curiosos'],
   ['Varsovia','Polonia','pasear por una ciudad reconstruida y por parques enormes'],
   ['Porto','Portugal','ver la Ribeira, cruzar puentes y brindar con vino de Oporto'],
   ['Praga','República Checa','cruzar puentes, ver castillos y sentirse en un cuento'],
-  ['Roma','Italia','ver Coliseo, Foro, Vaticano y comer pasta para llorar de felicidad'],
-  ['Sevilla','España','pasear por Santa Cruz, ver la Giralda y tapear sin piedad'],
+  ['Roma','Italia','ver el Coliseo, Foro, Vaticano y comer pasta hasta llorar de felicidad'],
+  ['Sevilla','España','... quillo, que NO ES, cojones'],
   ['Estocolmo','Suecia','saltar entre islas, palacios y museos vikingos'],
   ['Zúrich','Suiza','ver lago, montaña y tiendas de diseño muy peligrosas para la tarjeta'],
   ['Turín','Italia','pasear por cafés históricos y probar gastronomía piamontesa'],
@@ -34,23 +34,23 @@ const RAW_CITIES = [
 const SOFIA = [
   'Sofía',
   'Bulgaria',
-`✨🎉 ¡Siiiiii! ¡Muy bien! ¡Habéis acertado! 🎉✨
+`✨🎉 ¡Siiiiii! ¡TOMAAAAAAAAAAAA! ¡Habéis acertado! 🎉✨
 
-Os vais a Sofía. En diciembre hace una media de 2–3 °C, así que esperamos que llevéis gorros, guantes, abrigos... y un pato de goma, of course! 🦆🧣🧤
+Os vais a Sofía, que no SOFEA. En esta época del año la media es de 2–3 °C, así que esperamos que llevéis gorros, guantes, abrigos... y un pato de goma, of course! 🦆🧣🧤
 
-🛬 Llegaréis a las 22:45 hora local (crucemos los dedos para que WizzAir —NO RYANAIR— sea puntual 🤞). Pasaréis dos noches en el Hotel Aurora Sofia. El desayuno está incluido.
+🛬 Llegaréis a las <strong>22:45</strong> hora local (crucemos los dedos para que WizzAir —NO RYANAIR— sea puntual 🤞). Pasaréis dos noches en el Hotel <strong>Aurora Sofia</strong>. El desayuno está incluido.
 
-🚇 Para llegar al hotel, podéis tomar la línea M4 de metro, dirección Slivnitsa. Son 13 paradas hasta Opaltchenska y luego unos 5 minutos andando. Descargad el mapa offline por si acaso. 😉
+🚇 Para llegar al hotel, podéis tomar la <strong>línea M4</strong> de metro, dirección Slivnitsa. Son 13 paradas hasta Opalchenska y luego unos 5 minutos andando. Descargad el mapa de Google Maps offline por si acaso. 😉
 
-🏛️ En Sofía os recomendamos la Catedral Aleksandr Nevski, la Iglesia de Santa Sofía, la Rotonda de San Jorge... No os preocupéis, os mandaremos todos los detalles por WhatsApp una vez desvelado el misterio.
+🏛️ En Sofía os hemos reservado un walking tour con un guía. Os reconocerá cuando le hagáis la entrega del CD de villancicos. Tenéis que estar el <strong>sábado a las 10:00</strong> en el meeting point: monument of Saint Sofia - city patron. Son varias horas, aunque haréis paradas para tomar un café, comer, etc. Es posible que no os dé tiempo de ir al hotel antes de la cena. En cualquier caso, no os preocupéis, os mandaremos todos los detalles por WhatsApp.
 
-✈️ La vuelta será el domingo 23 a las 15:00 (hora de Sofía), esta vez con Bulgaria Air.
+🍽️ La cena del sábado también está incluida en vuestro pack bodil. Tenéis mesa reservada en <strong>Manastirska Magernitsa</strong>, un restaurante tradicional búlgaro. Eso sí, cenaréis en horario europeo: a las 19:00.
 
-🍽️ La cena también está incluida en vuestro pack bodil. Tenéis mesa en Manastirska Magernitsa, un restaurante tradicional búlgaro. Eso sí, cenaréis en horario europeo: a las 19:00.
+✈️ La vuelta será el <strong>domingo 23 a las 15:00</strong> (hora de Sofía), esta vez con Bulgaria Air. Llegáis a Madrid a las <strong>17:55</strong>.
 
 💖 Muchísimas gracias por seguirnos el juego. Sentimos “mucho” haberos hecho sufrir, pero esperamos que os hayáis divertido tanto como nosotros.
 
-Con esto, queda concluido oficialmente el JUEGO DE LA BODA. 💍✨`
+Dicho esto, queda concluido oficialmente el JUEGO DE LA BODA. 💍✨`
 ];
 
 function shuffle(array) {
@@ -106,6 +106,7 @@ export default function App() {
   const [seed, setSeed] = useState(0);
   const [timesBack, setTimesBack] = useState(0);
 
+  // Leer cookie al cargar
   useEffect(() => {
     const count = parseInt(getCookie('menuCount') || '0', 10);
     setTimesBack(count);
@@ -114,14 +115,17 @@ export default function App() {
     }
   }, []);
 
+  // Construir lista de ciudades según si ya toca incluir Sofía
   const cities = useMemo(() => {
     let base = shuffle(RAW_CITIES);
     if (includeSofia) {
+      // A partir de la 6ª vez: Sofía siempre incluida, sin destacar, en posición aleatoria
       base = base.filter((c) => c[0] !== 'Sofía');
       const chosen = base.slice(0, 9);
       const withSofia = [...chosen, SOFIA];
       return shuffle(withSofia);
     }
+    // Primeras 5 listas: sin Sofía
     return base.slice(0, 10);
   }, [includeSofia, seed]);
 
@@ -147,6 +151,7 @@ export default function App() {
     <div className="app-root">
       <div className="app-card">
         <h1>¿Dónde os apetece ir?</h1>
+
         {!selected ? (
           <>
             <p className="app-intro">
@@ -169,29 +174,44 @@ export default function App() {
           </>
         ) : (
           <div className="card">
-            <h2 className="detail-title">
-              {selected[0]} — <span>{selected[1]}</span>
-            </h2>
-{selected[0] === 'Sofía' ? (
-  // Caso especial: Sofía → solo mostramos el texto largo del viaje
-  <p className="detail-text">
-    {SOFIA[2]}
-  </p>
-) : (
-  // Cualquier otra ciudad → texto genérico de broma
-  <>
-    <p className="detail-text">
-      ✈️ Vaya, ¡buena elección! ¿Así que os gustaría visitar <strong>{selected[0]}</strong> en{' '}
-      <strong>{selected[1]}</strong>? Posiblemente no sea la mejor época del año, pero estaría genial para{' '}
-      {selected[2]}.
-    </p>
-    <p className="detail-text">
-      🙃 Pero me temo que va a ser que no: esta vez no vais a <strong>{selected[0]}</strong>.
-      No os preocupéis: podéis volver al menú principal sin esperar una hora ni nada raro.
-      Podréis intentarlo de nuevo inmediatamente, que se acerca la hora de embarque. 🛫
-    </p>
-  </>
-)}
+            {selected[0] === 'Sofía' ? (
+              <>
+                <h2
+                  className="detail-title"
+                  style={{
+                    textAlign: 'center',
+                    fontSize: '28px',
+                    marginBottom: '16px',
+                    fontWeight: 'bold'
+                  }}
+                >
+                  Sofía — Bulgaria
+                </h2>
+                <p
+                  className="detail-text"
+                  style={{ fontSize: '18px', lineHeight: 1.6 }}
+                  dangerouslySetInnerHTML={{
+                    __html: SOFIA[2].replace(/\n/g, '<br />')
+                  }}
+                />
+              </>
+            ) : (
+              <>
+                <h2 className="detail-title">
+                  {selected[0]} — <span>{selected[1]}</span>
+                </h2>
+                <p className="detail-text">
+                  ✈️ Vaya, ¡buena elección! ¿Así que os gustaría visitar <strong>{selected[0]}</strong> en{' '}
+                  <strong>{selected[1]}</strong>? Posiblemente no sea la mejor época del año, pero estaría genial para{' '}
+                  {selected[2]}.
+                </p>
+                <p className="detail-text">
+                  🙃 Pero me temo que va a ser que no: esta vez no vais a <strong>{selected[0]}</strong>.
+                  No os preocupéis: podéis volver al menú principal sin esperar una hora ni nada raro.
+                  Podréis intentarlo de nuevo inmediatamente, que se acerca la hora de embarque. 🛫
+                </p>
+              </>
+            )}
 
             <button className="btn-menu" onClick={handleBackToMenu}>
               Volver al menú principal
