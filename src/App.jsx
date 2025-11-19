@@ -172,26 +172,27 @@ export default function App() {
             <h2 className="detail-title">
               {selected[0]} — <span>{selected[1]}</span>
             </h2>
-            <p className="detail-text">
-              ✈️ Vaya, ¡buena elección! ¿Así que os gustaría visitar <strong>{selected[0]}</strong> en{' '}
-              <strong>{selected[1]}</strong>? Posiblemente no sea la mejor época del año, pero estaría genial para{' '}
-              {selected[2]}.
-            </p>
-            {/* Si NO es Sofía → mostrar texto genérico */}
-{selected[0] !== 'Sofía' && (
-  <p className="detail-text">
-    🙃 Pero me temo que va a ser que no: esta vez no vais a <strong>{selected[0]}</strong>.
-    No os preocupéis: podéis volver al menú principal sin esperar una hora ni nada raro.
-    Podréis intentarlo de nuevo inmediatamente, que se acerca la hora de embarque. 🛫
-  </p>
-)}
-
-{/* Si es Sofía → mostrar solo el texto especial */}
-{selected[0] === 'Sofía' && (
+{selected[0] === 'Sofía' ? (
+  // Caso especial: Sofía → solo mostramos el texto largo del viaje
   <p className="detail-text">
     {SOFIA[2]}
   </p>
+) : (
+  // Cualquier otra ciudad → texto genérico de broma
+  <>
+    <p className="detail-text">
+      ✈️ Vaya, ¡buena elección! ¿Así que os gustaría visitar <strong>{selected[0]}</strong> en{' '}
+      <strong>{selected[1]}</strong>? Posiblemente no sea la mejor época del año, pero estaría genial para{' '}
+      {selected[2]}.
+    </p>
+    <p className="detail-text">
+      🙃 Pero me temo que va a ser que no: esta vez no vais a <strong>{selected[0]}</strong>.
+      No os preocupéis: podéis volver al menú principal sin esperar una hora ni nada raro.
+      Podréis intentarlo de nuevo inmediatamente, que se acerca la hora de embarque. 🛫
+    </p>
+  </>
 )}
+
             <button className="btn-menu" onClick={handleBackToMenu}>
               Volver al menú principal
             </button>
