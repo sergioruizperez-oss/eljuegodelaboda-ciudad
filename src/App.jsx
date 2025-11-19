@@ -1,40 +1,40 @@
 import { useEffect, useMemo, useState } from 'react';
 
 const RAW_CITIES = [
-  ['Ámsterdam', 'Países Bajos', 'recorrer los canales en barco, visitar museos y cafés junto al agua'],
-  ['Atenas', 'Grecia', 'ver la Acrópolis, pasear por Plaka y comer delicias griegas al sol'],
-  ['Barcelona', 'España', 'disfrutar de las playas, la Sagrada Familia y tapas hasta caer de espaldas'],
-  ['Basilea / Mulhouse / Freiburg', 'Suiza / Francia / Alemania', 'saltar de un país a otro casi sin darse cuenta'],
-  ['Bilbao', 'España', 'ver el Guggenheim, tapear de pintxos y hacer alguna excursión cerca'],
-  ['Bordeaux', 'Francia', 'probar vinos, pasear junto al Garona y admirar el centro histórico'],
-  ['Bruselas', 'Bélgica', 'comer gofres, chocolate y perderse por la Grand Place'],
-  ['Copenhague', 'Dinamarca', 'pasear por Nyhavn, montarse en Tivoli y presumir de diseño nórdico'],
-  ['Cracovia', 'Polonia', 'recorrer el casco antiguo medieval y subir al castillo de Wawel'],
-  ['Gdansk', 'Polonia', 'ver el puerto histórico, la arquitectura báltica y pasear junto al mar'],
-  ['Ginebra', 'Suiza', 'ver el lago Lemán, probar chocolate y disfrutar de las vistas alpinas'],
-  ['Helsinki', 'Finlandia', 'alternar entre saunas, arquitectura y naturaleza del archipiélago'],
-  ['Lisboa', 'Portugal', 'subir en tranvía, ver miradores y comer pastéis de nata'],
-  ['Londres', 'Reino Unido', 'visitar museos gratuitos, parques enormes y mercados míticos'],
-  ['Málaga', 'España', 'ir a la playa, ver a Picasso y zamparse un buen pescaíto frito'],
-  ['Marsella', 'Francia', 'recorrer el puerto viejo, ver arte callejero y probar bouillabaisse'],
-  ['Nantes', 'Francia', 'pasear junto al Loira y probar buen marisco'],
-  ['Niza / Côte d’Azur', 'Francia', 'mezclar playas, glamour y pueblecitos preciosos alrededor'],
-  ['Oslo', 'Noruega', 'acercarse a los fiordos, ver arquitectura nórdica y museos curiosos'],
-  ['Varsovia', 'Polonia', 'pasear por una ciudad reconstruida y por parques enormes'],
-  ['Porto', 'Portugal', 'ver la Ribeira, cruzar puentes y brindar con vino de Oporto'],
-  ['Praga', 'República Checa', 'cruzar puentes, ver castillos y sentirse en un cuento'],
-  ['Roma', 'Italia', 'ver Coliseo, Foro, Vaticano y comer pasta para llorar de felicidad'],
-  ['Sevilla', 'España', 'pasear por Santa Cruz, ver la Giralda y tapear sin piedad'],
-  ['Estocolmo', 'Suecia', 'saltar entre islas, palacios y museos vikingos'],
-  ['Zúrich', 'Suiza', 'ver lago, montaña y tiendas de diseño muy peligrosas para la tarjeta'],
-  ['Turín', 'Italia', 'pasear por cafés históricos y probar gastronomía piamontesa'],
-  ['Venecia', 'Italia', 'perderse por canales, puentes y rincones románticos']
+  ['Ámsterdam','Países Bajos','recorrer los canales en barco, visitar museos y cafés junto al agua'],
+  ['Atenas','Grecia','ver la Acrópolis, pasear por Plaka y comer delicias griegas al sol'],
+  ['Barcelona','España','disfrutar de las playas, la Sagrada Familia y tapas hasta caer de espaldas'],
+  ['Basilea / Mulhouse / Freiburg','Suiza / Francia / Alemania','saltar de un país a otro casi sin darse cuenta'],
+  ['Bilbao','España','ver el Guggenheim, tapear de pintxos y hacer alguna excursión cerca'],
+  ['Bordeaux','Francia','probar vinos, pasear junto al Garona y admirar el centro histórico'],
+  ['Bruselas','Bélgica','comer gofres, chocolate y perderse por la Grand Place'],
+  ['Copenhague','Dinamarca','pasear por Nyhavn, montarse en Tivoli y presumir de diseño nórdico'],
+  ['Cracovia','Polonia','recorrer el casco antiguo medieval y subir al castillo de Wawel'],
+  ['Gdansk','Polonia','ver el puerto histórico, la arquitectura báltica y pasear junto al mar'],
+  ['Ginebra','Suiza','ver el lago Lemán, probar chocolate y disfrutar de las vistas alpinas'],
+  ['Helsinki','Finlandia','alternar entre saunas, arquitectura y naturaleza del archipiélago'],
+  ['Lisboa','Portugal','subir en tranvía, ver miradores y comer pastéis de nata'],
+  ['Londres','Reino Unido','visitar museos gratuitos, parques enormes y mercados míticos'],
+  ['Málaga','España','ir a la playa, ver a Picasso y zamparse un buen pescaíto frito'],
+  ['Marsella','Francia','recorrer el puerto viejo, ver arte callejero y probar bouillabaisse'],
+  ['Nantes','Francia','pasear junto al Loira y probar buen marisco'],
+  ['Niza / Côte d’Azur','Francia','mezclar playas, glamour y pueblecitos preciosos alrededor'],
+  ['Oslo','Noruega','acercarse a los fiordos, ver arquitectura nórdica y museos curiosos'],
+  ['Varsovia','Polonia','pasear por una ciudad reconstruida y por parques enormes'],
+  ['Porto','Portugal','ver la Ribeira, cruzar puentes y brindar con vino de Oporto'],
+  ['Praga','República Checa','cruzar puentes, ver castillos y sentirse en un cuento'],
+  ['Roma','Italia','ver Coliseo, Foro, Vaticano y comer pasta para llorar de felicidad'],
+  ['Sevilla','España','pasear por Santa Cruz, ver la Giralda y tapear sin piedad'],
+  ['Estocolmo','Suecia','saltar entre islas, palacios y museos vikingos'],
+  ['Zúrich','Suiza','ver lago, montaña y tiendas de diseño muy peligrosas para la tarjeta'],
+  ['Turín','Italia','pasear por cafés históricos y probar gastronomía piamontesa'],
+  ['Venecia','Italia','perderse por canales, puentes y rincones románticos']
 ];
 
 const SOFIA = [
   'Sofía',
   'Bulgaria',
-  `✨🎉 ¡Siiiiii! ¡Muy bien! ¡Habéis acertado! 🎉✨
+`✨🎉 ¡Siiiiii! ¡Muy bien! ¡Habéis acertado! 🎉✨
 
 Os vais a Sofía. En diciembre hace una media de 2–3 °C, así que esperamos que llevéis gorros, guantes, abrigos... y un pato de goma, of course! 🦆🧣🧤
 
@@ -67,10 +67,8 @@ function getCookie(name) {
   return match ? decodeURIComponent(match[1]) : null;
 }
 
-function setCookie(name, value, days = 365) {
-  const d = new Date();
-  d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
-  document.cookie = `${name}=${encodeURIComponent(value)}; path=/; expires=${d.toUTCString()}`;
+function setCookie(name, value) {
+  document.cookie = name + '=' + encodeURIComponent(value) + ';path=/;max-age=31536000';
 }
 
 function launchConfetti() {
@@ -106,9 +104,12 @@ export default function App() {
   const [selected, setSelected] = useState(null);
   const [includeSofia, setIncludeSofia] = useState(false);
   const [seed, setSeed] = useState(0);
+  const [timesBack, setTimesBack] = useState(0);
 
   useEffect(() => {
-    if (getCookie('includeSofia') === '1') {
+    const count = parseInt(getCookie('menuCount') || '0', 10);
+    setTimesBack(count);
+    if (count >= 5) {
       setIncludeSofia(true);
     }
   }, []);
@@ -117,7 +118,9 @@ export default function App() {
     let base = shuffle(RAW_CITIES);
     if (includeSofia) {
       base = base.filter((c) => c[0] !== 'Sofía');
-      return [SOFIA, ...base.slice(0, 9)];
+      const chosen = base.slice(0, 9);
+      const withSofia = [...chosen, SOFIA];
+      return shuffle(withSofia);
     }
     return base.slice(0, 10);
   }, [includeSofia, seed]);
@@ -130,10 +133,10 @@ export default function App() {
   };
 
   const handleBackToMenu = () => {
-    let count = parseInt(getCookie('menuCount') || '0', 10) + 1;
-    setCookie('menuCount', String(count));
-    if (count >= 2) {
-      setCookie('includeSofia', '1');
+    const newCount = timesBack + 1;
+    setTimesBack(newCount);
+    setCookie('menuCount', String(newCount));
+    if (newCount >= 5) {
       setIncludeSofia(true);
     }
     setSelected(null);
@@ -148,12 +151,13 @@ export default function App() {
           <>
             <p className="app-intro">
               Elige tu destino... ¿dónde pensáis que vais a volar? Ojo con lo que seleccionáis:
-              si os equivocáis podréis volver al menú principal, pero puede que Sofía tarde un poquito en aparecer.
+              si os equivocáis podréis volver al menú principal y elegir otra opción. Pero no,
+              no tendréis que esperar :-).
             </p>
             {cities.map((c, idx) => (
               <button
                 key={c[0] + idx}
-                className={`city-btn ${c[0] === 'Sofía' ? 'sofia' : ''}`}
+                className="city-btn"
                 onClick={() => handleSelect(c)}
               >
                 <span>📍</span>

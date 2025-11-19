@@ -6,6 +6,7 @@ body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: linear-gradient(to bottom right, #dbe4ff, #f8c8dc);
+  padding: 20px;
 }
 
 .app-root {
@@ -13,7 +14,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
 }
 
 .app-card {
@@ -54,14 +54,8 @@ h1 {
   background: #5b21b6;
 }
 
-.city-btn .city-country {
+.city-country {
   opacity: 0.9;
-}
-
-.city-btn.sofia {
-  background: linear-gradient(to right, #ffe066, #ff6b6b);
-  font-weight: bold;
-  font-size: 18px;
 }
 
 .card {
