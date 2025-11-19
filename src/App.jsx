@@ -208,7 +208,7 @@ export default function App() {
                 <p className="detail-text">
                   🙃 Pero me temo que va a ser que no: esta vez no vais a <strong>{selected[0]}</strong>.
                   No os preocupéis: podéis volver al menú principal sin esperar una hora ni nada raro.
-                  Podréis intentarlo de nuevo inmediatamente, que se acerca la hora de embarque. 🛫
+                  Podréis intentarlo de nuevo inmediatamente, que se acerca el momento de viajar. 🛫
                 </p>
               </>
             )}
