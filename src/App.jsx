@@ -177,16 +177,21 @@ export default function App() {
               <strong>{selected[1]}</strong>? Posiblemente no sea la mejor época del año, pero estaría genial para{' '}
               {selected[2]}.
             </p>
-            <p className="detail-text">
-              🙃 Pero me temo que va a ser que no: esta vez no vais a <strong>{selected[0]}</strong>.
-              No os preocupéis: podéis volver al menú principal sin esperar una hora ni nada raro.
-              Podréis intentarlo de nuevo inmediatamente, que se acerca la hora de embarque. 🛫
-            </p>
-            {selected[0] === 'Sofía' && (
-              <p className="detail-text">
-                {SOFIA[2]}
-              </p>
-            )}
+            {/* Si NO es Sofía → mostrar texto genérico */}
+{selected[0] !== 'Sofía' && (
+  <p className="detail-text">
+    🙃 Pero me temo que va a ser que no: esta vez no vais a <strong>{selected[0]}</strong>.
+    No os preocupéis: podéis volver al menú principal sin esperar una hora ni nada raro.
+    Podréis intentarlo de nuevo inmediatamente, que se acerca la hora de embarque. 🛫
+  </p>
+)}
+
+{/* Si es Sofía → mostrar solo el texto especial */}
+{selected[0] === 'Sofía' && (
+  <p className="detail-text">
+    {SOFIA[2]}
+  </p>
+)}
             <button className="btn-menu" onClick={handleBackToMenu}>
               Volver al menú principal
             </button>
